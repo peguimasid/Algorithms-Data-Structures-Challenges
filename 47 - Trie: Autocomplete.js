@@ -35,7 +35,9 @@ class Trie {
     return words;
   }
   autoComplete(prefix) {
-    return this.getWords().filter((word) => word.startsWith(prefix));
+    const subTrie = this.findWord(prefix);
+
+    return subTrie ? subTrie.getWords([], prefix) : [];
   }
 }
 
@@ -50,4 +52,4 @@ trie.addWord('forget');
 trie.addWord('awesome');
 trie.addWord('argue');
 
-console.log(trie.autoComplete('arz'));
+console.log(trie.autoComplete('fa'));
